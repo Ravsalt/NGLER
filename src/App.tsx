@@ -8,7 +8,7 @@ import { useNumberInput } from './hooks/useNumberInput'
 import { User, MessageSquare, Hash, Send, Loader2 } from 'lucide-react';
 import { Navbar } from './components/layout/Navbar';
 import { toast } from 'sonner';
-import { Analytics } from "@vercel/analytics"
+import { Analytics } from "@vercel/analytics/react"
 
 interface FormData {
   username: string;
