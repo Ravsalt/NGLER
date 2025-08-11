@@ -1,30 +1,63 @@
-import { StrictMode, lazy, Suspense } from 'react'
-import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Spinner } from './components/ui/spinner/Spinner.tsx'
-import './index.css'
+import { StrictMode, lazy, Suspense } from 'react';
+import { createRoot } from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Spinner } from './components/ui/spinner/Spinner';
+import './index.css';
 
-const App = lazy(() => import('./App.tsx'));
-const About = lazy(() => import('./pages/About.tsx'));
-const Contact = lazy(() => import('./pages/Contact.tsx'));
+// Lazy load components with error handling
+const lazyWithRetry = (componentImport: any) =>
+  lazy(async () => {
+    try {
+      return await componentImport();
+    } catch (error) {
+      console.error('Error loading component:', error);
+      throw error;
+    }
+  });
+
+// Lazy load components
+const App = lazyWithRetry(() => import('./App'));
+const About = lazyWithRetry(() => import('./pages/About'));
+const Contact = lazyWithRetry(() => import('./pages/Contact'));
+
+// Error boundary component
+const ErrorBoundary = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <Suspense fallback={<Spinner />}>
+      {children}
+    </Suspense>
+  );
+};
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Suspense fallback={<Spinner />}><App /></Suspense>,
+    element: (
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
+    ),
   },
   {
     path: "/about",
-    element: <Suspense fallback={<Spinner />}><About /></Suspense>,
+    element: (
+      <ErrorBoundary>
+        <About />
+      </ErrorBoundary>
+    ),
   },
   {
     path: "/contact",
-    element: <Suspense fallback={<Spinner />}><Contact /></Suspense>,
+    element: (
+      <ErrorBoundary>
+        <Contact />
+      </ErrorBoundary>
+    ),
   },
 ]);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>,
-)
+  </StrictMode>
+);

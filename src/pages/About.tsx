@@ -24,13 +24,24 @@ function About() {
                 <p className="text-lg mt-4">
                   Have questions or ideas for new features? I'd love to hear from you!
                 </p>
-                <Link to="/contact">
-                  <Button className="mt-6">Get in Touch</Button>
+                <Link to="/contact" draggable="false" className="select-none">
+                  <Button 
+                    className="mt-6 select-none" 
+                    draggable="false"
+                  >
+                    Get in Touch
+                  </Button>
                 </Link>
               </CardContent>
             </div>
             <div className="flex items-center justify-center">
-              <img src="https://github.com/ravsalt.png" alt="ravsalt pfp" className="w-64 h-64 rounded-full" loading="lazy" />
+              <img 
+                src="https://github.com/ravsalt.png" 
+                alt="ravsalt pfp" 
+                className="w-64 h-64 rounded-full select-none" 
+                loading="lazy" 
+                draggable="false"
+              />
             </div>
           </div>
         </Card>

@@ -22,26 +22,44 @@ export const Navbar = memo(() => {
       <NavigationMenu>
         <NavigationMenuList className="gap-2">
           <NavigationMenuItem>
-            <NavigationMenuLink href="/" className={cn(navigationMenuTriggerStyle(), "hover:scale-105 transition-transform flex items-center gap-2")}>
+            <NavigationMenuLink 
+              href="/" 
+              draggable="false"
+              className={cn(navigationMenuTriggerStyle(), "transition-transform hover:scale-105 hover:shadow-lg select-none")}
+            >
               <Home className="h-5 w-5" />
               <span>Home</span>
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuLink href="/about" className={cn(navigationMenuTriggerStyle(), "hover:scale-105 transition-transform flex items-center gap-2")}>
+            <NavigationMenuLink 
+              href="/about" 
+              draggable="false"
+              className={cn(navigationMenuTriggerStyle(), "transition-transform hover:scale-105 hover:shadow-lg select-none")}
+            >
               <Info className="h-5 w-5" />
               <span>About</span>
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuLink href="/contact" className={cn(navigationMenuTriggerStyle(), "hover:scale-105 transition-transform flex items-center gap-2")}>
+            <NavigationMenuLink 
+              href="/contact" 
+              draggable="false"
+              className={cn(navigationMenuTriggerStyle(), "transition-transform hover:scale-105 hover:shadow-lg select-none")}
+            >
               <Mail className="h-5 w-5" />
               <span>Contact</span>
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <Button onClick={() => setIsDarkMode(!isDarkMode)} variant="outline" size="icon">
+      <Button 
+        onClick={() => setIsDarkMode(!isDarkMode)} 
+        variant="outline" 
+        size="icon" 
+        draggable="false"
+        className="transition-transform hover:scale-110 hover:shadow-lg select-none"
+      >
         {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
       </Button>
     </div>
