@@ -1,70 +1,26 @@
-# React + TypeScript + Vite
+# Ngler
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+Ngler is a powerful and intuitive web application designed for testing purposes, allowing users to simulate sending multiple anonymous messages to NGL (Not Gonna Lie) users. It provides a streamlined interface to specify a target username, compose a message, and define the number of times the message should be sent.
 
-Currently, two official plugins are available:
+## Features (Preview)
+Experience the core functionalities of Ngler directly through its user-friendly interface:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+*   **Target Usernames:** Easily input the NGL username you wish to target.
+*   **Custom Messages:** Craft your anonymous message with a dedicated text area.
+*   **Message Quantity:** Control the volume by specifying the exact number of messages to send.
+*   **"Destroy" Action:** Initiate the message sending process with a clear, prominent button.
+*   **Dark Mode:** Toggle between light and dark themes for optimal viewing comfort in any environment.
+*   **Intuitive Navigation:** Seamlessly navigate to the 'About' section for more details on the application's purpose and the 'Contact' section to get in touch with the developer.
 
-## Expanding the ESLint configuration
+## Live Preview
+Ngler is designed for direct interaction. To experience it, simply open the application in your browser. You can immediately input a target username, type your message, set the desired number of messages, and click 'Destroy' to observe the simulated sending process. No prior installation or complex setup is required.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Disclaimer
+**This tool is developed strictly for testing and educational purposes. Please use it responsibly and ethically. The developer is not liable for any misuse or damage caused by this tool.**
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Visuals
+*(Placeholder: This section would ideally feature screenshots or a short GIF demonstrating the application's interface, including the main form, dark mode toggle, and navigation.)*
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-# NGLER
+## About & Contact
+For more information about Ngler, its development, or to reach out, please explore the 'About' and 'Contact' pages directly within the application's navigation.
