@@ -1,11 +1,11 @@
-import { StrictMode, lazy, Suspense } from 'react';
+import { StrictMode, lazy } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Spinner } from './components/ui/spinner/Spinner';
 import './index.css';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 // Lazy load components with error handling
-const lazyWithRetry = (componentImport: any) =>
+const lazyWithRetry = (componentImport: () => Promise<{ default: React.ComponentType<object> }>) =>
   lazy(async () => {
     try {
       return await componentImport();
@@ -19,15 +19,6 @@ const lazyWithRetry = (componentImport: any) =>
 const App = lazyWithRetry(() => import('./App'));
 const About = lazyWithRetry(() => import('./pages/About'));
 const Contact = lazyWithRetry(() => import('./pages/Contact'));
-
-// Error boundary component
-const ErrorBoundary = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <Suspense fallback={<Spinner />}>
-      {children}
-    </Suspense>
-  );
-};
 
 const router = createBrowserRouter([
   {

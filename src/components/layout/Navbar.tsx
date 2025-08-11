@@ -1,5 +1,6 @@
 import { useState, useEffect, memo } from 'react';
-import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink, navigationMenuTriggerStyle } from '../ui/navigation-menu';
+import { NavigationMenuLink, NavigationMenuList, NavigationMenuItem, NavigationMenu } from "../ui/navigation-menu"
+import { navigationMenuTriggerStyle } from "../ui/navigation-menu-styles"
 import { Button } from '../ui/button';
 import { Moon, Sun, Home, Info, Mail } from 'lucide-react';
 import { cn } from '../../lib/utils';

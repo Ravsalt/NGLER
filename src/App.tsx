@@ -8,6 +8,7 @@ import { useNumberInput } from './hooks/useNumberInput'
 import { User, MessageSquare, Hash, Send, Loader2 } from 'lucide-react';
 import { Navbar } from './components/layout/Navbar';
 import { toast } from 'sonner';
+import { Analytics } from "@vercel/analytics/next"
 
 interface FormData {
   username: string;
@@ -60,7 +61,7 @@ function App() {
     try {
       setIsSubmitting(true);
       // Using relative URL which will be proxied by Vite
-      const response = await fetch('/api/api/submit', {
+      const response = await fetch('https://ngler-api.vercel.app/api/submit', {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -103,6 +104,8 @@ function App() {
 
   return (
     <>
+
+      <Analytics/>
       <Navbar />
       <div className="flex h-screen items-center justify-center pb-32">
         <form onSubmit={handleSubmit} className="w-full max-w-[600px] px-4">
