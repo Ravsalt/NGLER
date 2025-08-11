@@ -19,8 +19,7 @@ Ngler is designed for direct interaction. To experience it, simply open the appl
 ## Disclaimer
 **This tool is developed strictly for testing and educational purposes. Please use it responsibly and ethically. The developer is not liable for any misuse or damage caused by this tool.**
 
-## Visuals
-*(Placeholder: This section would ideally feature screenshots or a short GIF demonstrating the application's interface, including the main form, dark mode toggle, and navigation.)*
+
 
 ## About & Contact
 For more information about Ngler, its development, or to reach out, please explore the 'About' and 'Contact' pages directly within the application's navigation.
