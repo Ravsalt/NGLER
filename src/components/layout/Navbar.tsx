@@ -1,12 +1,15 @@
 import { useState, useEffect, memo } from 'react';
+import { useLocation } from 'react-router-dom';
 import { NavigationMenuLink, NavigationMenuList, NavigationMenuItem, NavigationMenu } from "../ui/navigation-menu"
 import { navigationMenuTriggerStyle } from "../ui/navigation-menu-styles"
 import { Button } from '../ui/button';
-import { Moon, Sun, Home, Info, Mail } from 'lucide-react';
+import { Moon, Sun, Home, Info, Mail, Menu } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 export const Navbar = memo(() => {
-  const [isDarkMode, setIsDarkMode] = useState(localStorage.getItem('theme') === 'dark');
+  const [isDarkMode, setIsDarkMode] = useState(localStorage.getItem('theme') !== 'light');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     if (isDarkMode) {
@@ -18,42 +21,68 @@ export const Navbar = memo(() => {
     }
   }, [isDarkMode]);
 
+  const navLinks = [
+    { href: '/', text: 'Home', icon: <Home className="h-5 w-5" /> },
+    { href: '/about', text: 'About', icon: <Info className="h-5 w-5" /> },
+    { href: '/contact', text: 'Contact', icon: <Mail className="h-5 w-5" /> },
+  ];
+
   return (
     <div className="flex justify-between items-center py-4 px-8">
-      <NavigationMenu>
-        <NavigationMenuList className="gap-2">
-          <NavigationMenuItem>
-            <NavigationMenuLink 
-              href="/" 
-              draggable="false"
-              className={cn(navigationMenuTriggerStyle(), "transition-transform hover:scale-105 hover:shadow-lg select-none")}
-            >
-              <Home className="h-5 w-5" />
-              <span>Home</span>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink 
-              href="/about" 
-              draggable="false"
-              className={cn(navigationMenuTriggerStyle(), "transition-transform hover:scale-105 hover:shadow-lg select-none")}
-            >
-              <Info className="h-5 w-5" />
-              <span>About</span>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink 
-              href="/contact" 
-              draggable="false"
-              className={cn(navigationMenuTriggerStyle(), "transition-transform hover:scale-105 hover:shadow-lg select-none")}
-            >
-              <Mail className="h-5 w-5" />
-              <span>Contact</span>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
+      <div className="hidden md:block">
+        <NavigationMenu>
+          <NavigationMenuList className="gap-2">
+            {navLinks.map((link) => (
+              <NavigationMenuItem key={link.href}>
+                <NavigationMenuLink
+                  href={link.href}
+                  draggable="false"
+                  className={cn(
+                    navigationMenuTriggerStyle(),
+                    "transition-transform hover:scale-105 hover:shadow-lg select-none",
+                    location.pathname === link.href && "bg-muted"
+                  )}
+                >
+                  {link.icon}
+                  <span>{link.text}</span>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
+      </div>
+
+      <div className="md:hidden">
+        <Button variant="outline" size="icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          <Menu className="h-5 w-5" />
+        </Button>
+        {isMobileMenuOpen && (
+          <div className="absolute top-16 left-0 w-full bg-background z-50">
+            <NavigationMenu>
+              <NavigationMenuList className="flex-col items-start p-4 gap-2">
+                {navLinks.map((link) => (
+                  <NavigationMenuItem key={link.href}>
+                    <NavigationMenuLink
+                      href={link.href}
+                      draggable="false"
+                      className={cn(
+                        navigationMenuTriggerStyle(),
+                        "w-full justify-start",
+                        location.pathname === link.href && "bg-muted"
+                      )}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {link.icon}
+                      <span>{link.text}</span>
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                ))}
+              </NavigationMenuList>
+            </NavigationMenu>
+          </div>
+        )}
+      </div>
+
       <Button 
         onClick={() => setIsDarkMode(!isDarkMode)} 
         variant="outline" 
