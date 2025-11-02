@@ -14,7 +14,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     const nglLinkResponse = await axios.get(`https://ngl.link/${username}`);
-    if (nglLinkResponse.data.includes('Could not find user')) {
+    if (nglLinkResponse.data.includes('Could not find user') || nglLinkResponse.data.includes('404 Not Found')) {
       return res.status(404).json({ error: 'User not found' });
     }
 

@@ -99,9 +99,12 @@ function App() {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(
-          errorData.error || `HTTP error! Status: ${response.status}`
-        );
+        if (response.status === 404) {
+          toast.error('User not found. Please check the username and try again.');
+        } else {
+          toast.error(errorData.error || `Failed to send message. Status: ${response.status}`);
+        }
+        return;
       }
 
       const responseData = await response.json();
